@@ -26,3 +26,17 @@ output/job-application-tracker/
 *.njsproj
 *.sln
 *.sw?
+
+# ---------------------------------------------------------------------------
+# Secrets + local overrides (never commit)
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
