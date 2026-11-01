@@ -1,100 +1,31 @@
 import React, { useState } from 'react';
+import { EMAIL, GITHUB_URL, LINKEDIN_URL, RESUME_URL } from '../config/links';
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const [copyState, setCopyState] = useState<'idle' | 'copied' | 'error'>('idle');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopyState('copied');
+    } catch {
+      setCopyState('error');
+    }
   };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission here
-    alert('Thank you for your message! I\'ll get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
-  };
-
-  const socialLinks = [
-    { name: 'GitHub', url: 'https://github.com' },
-    { name: 'LinkedIn', url: 'https://linkedin.com' },
-    { name: 'Twitter', url: 'https://twitter.com' },
-    { name: 'Email', url: 'mailto:hello@example.com' }
-  ];
 
   return (
-    <section className="section">
-      <div className="container">
-        <h2 className="section-title">Contact</h2>
-        
-        <div className="contact-form">
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label htmlFor="name" className="form-label">Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="form-input"
-              />
-            </div>
-            
-            <div className="form-group">
-              <label htmlFor="email" className="form-label">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="form-input"
-              />
-            </div>
-            
-            <div className="form-group">
-              <label htmlFor="message" className="form-label">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                className="form-textarea"
-              />
-            </div>
-            
-            <button type="submit" className="form-submit">
-              Send Message
-            </button>
-          </form>
-          
-          <div className="contact-divider"></div>
-          
-          <div className="social-links">
-            {socialLinks.map((link, index) => (
-              <a 
-                key={index}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link"
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
+    <section className="section contact-page">
+      <header className="page-header"><div className="section-subtitle">Contact</div><h1>Let’s discuss platform engineering work.</h1><p>I’m open to senior Platform Engineering, backend platform, and reliability opportunities in India or globally.</p></header>
+      <div className="contact-panel">
+        <div className="contact-primary"><span className="section-subtitle">Email</span><a href={`mailto:${EMAIL}`}>{EMAIL}</a><p>Email is the fastest way to reach me. Include the role, team, and the systems you need this person to own.</p></div>
+        <div className="contact-actions">
+          <a className="primary-action" href={`mailto:${EMAIL}`}>Email Me</a>
+          <button className="secondary-action" type="button" onClick={copyEmail} aria-label="Copy email address">{copyState === 'copied' ? 'Email Copied' : copyState === 'error' ? 'Copy Failed — Select Email' : 'Copy Email'}</button>
+          <a className="secondary-action" href={LINKEDIN_URL} target="_blank" rel="noreferrer">LinkedIn</a>
+          <a className="secondary-action" href={GITHUB_URL} target="_blank" rel="noreferrer">GitHub</a>
+          <a className="secondary-action" href={RESUME_URL} download="Hritvik-Dinkar-Resume.pdf">Download Résumé</a>
         </div>
+        <p className="copy-status" aria-live="polite">{copyState === 'copied' ? 'Email address copied to clipboard.' : copyState === 'error' ? `Clipboard access was unavailable. Email ${EMAIL} directly.` : ''}</p>
       </div>
     </section>
   );

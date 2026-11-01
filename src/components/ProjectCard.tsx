@@ -12,12 +12,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
   const getTypeColor = (type: string) => {
     switch (type) {
+      case 'genai':
+        return 'genai-bg';
       case 'backend':
         return 'backend-bg';
-      case 'frontend':
-        return 'frontend-bg';
-      case 'android':
-        return 'android-bg';
+      case 'data':
+        return 'data-bg';
+      case 'platform':
+        return 'platform-bg';
       default:
         return 'backend-bg';
     }
@@ -29,7 +31,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   };
 
   const handleCardClick = () => {
-    if (project.github) {
+    if (project.live) {
+      window.open(project.live, '_blank');
+    } else if (project.github) {
       window.open(project.github, '_blank');
     }
   };
@@ -47,14 +51,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     <>
       <div className="project-card" onClick={handleCardClick}>
-        <div className="project-type-icon">
-          <div className={`w-3 h-3 rounded ${getTypeColor(project.type)}`} />
-        </div>
-        
         <div className="project-header">
           <div className="project-type-org">
+            <span className={`project-type-icon ${getTypeColor(project.type)}`} />
             <span className="project-type">{project.type}</span>
             <span className="project-org">{project.org}</span>
+            <span className="project-org">{project.period}</span>
           </div>
           {diagram && (
             <button
@@ -69,6 +71,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
         <h3 className="project-name">{project.name}</h3>
         <p className="project-desc">{project.desc}</p>
+        <div className="project-proof">
+          <div className="project-proof-label">Impact</div>
+          <p>{project.impact}</p>
+        </div>
+        <div className="project-scope">{project.scope}</div>
         
         <div className="project-tags">
           {project.tags.map((tag, index) => (

@@ -8,6 +8,7 @@ import ReactFlow, {
   Background,
   MiniMap,
 } from 'reactflow';
+import type { Connection } from 'reactflow';
 import 'reactflow/dist/style.css';
 import type { DiagramData } from '../types';
 
@@ -21,7 +22,7 @@ const ArchitectureDiagram: React.FC<ArchitectureDiagramProps> = ({ diagram, onCl
   const [edges, setEdges, onEdgesChange] = useEdgesState(diagram.edges);
 
   const onConnect = useCallback(
-    (params: any) => setEdges((eds) => addEdge(params, eds)),
+    (params: Connection) => setEdges((eds) => addEdge(params, eds)),
     [setEdges]
   );
 
@@ -32,7 +33,7 @@ const ArchitectureDiagram: React.FC<ArchitectureDiagramProps> = ({ diagram, onCl
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h2 className="modal-title">{diagram.name}</h2>
-          <button className="modal-close" onClick={onClose}>
+          <button className="modal-close" onClick={onClose} aria-label="Close architecture diagram">
             ×
           </button>
         </div>

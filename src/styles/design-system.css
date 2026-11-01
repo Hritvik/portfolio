@@ -1,34 +1,42 @@
-/* Design System for Distracted Dev Portfolio */
+/* Professional design system for Hritvik Dinkar's portfolio */
 
 :root {
   /* Colors - Light Mode */
-  --color-bg-primary: #FAFAFA;
-  --color-bg-secondary: #F5F5F5;
-  --color-text-primary: #1A1A1A;
-  --color-text-secondary: #666666;
-  --color-text-muted: #999999;
-  --color-border: rgba(0, 0, 0, 0.1);
+  --color-bg-primary: #F7F8FA;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-tertiary: #EEF2F6;
+  --color-text-primary: #111827;
+  --color-text-secondary: #4B5563;
+  --color-text-muted: #6B7280;
+  --color-border: #D9E0EA;
   
   /* Accent Colors */
-  --color-backend: #5DCAA5;
-  --color-frontend: #AFA9EC;
-  --color-android: #F0997B;
+  --color-primary: #FECE14;
+  --color-secondary: #000000;
+  --color-genai: #0F766E;
+  --color-backend: #2563EB;
+  --color-data: #7C3AED;
+  --color-platform: #C2410C;
+  --color-success: #16A34A;
+  --color-warning: #D97706;
+  --color-danger: #DC2626;
+  --shadow-card: 0 1px 2px rgba(17, 24, 39, 0.06), 0 12px 32px rgba(17, 24, 39, 0.08);
   
   /* Typography */
-  --font-serif: 'DM Serif Display', serif;
-  --font-mono: 'DM Mono', monospace;
-  --font-sans: 'DM Sans', sans-serif;
+  --font-serif: 'Poppins', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-sans: 'Poppins', system-ui, sans-serif;
   
   /* Font Sizes */
-  --text-xs: 0.75rem;
+  --text-xs: 0.72rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
   --text-lg: 1.125rem;
   --text-xl: 1.25rem;
   --text-2xl: 1.5rem;
-  --text-3xl: 1.875rem;
+  --text-3xl: 1.75rem;
   --text-4xl: 2.25rem;
-  --text-5xl: 3rem;
+  --text-5xl: 3.25rem;
   
   /* Spacing */
   --space-1: 0.25rem;
@@ -44,12 +52,12 @@
   --space-20: 5rem;
   
   /* Layout */
-  --container-max-width: 900px;
+  --container-max-width: 1120px;
   --container-padding: 2rem;
   
   /* Borders */
-  --border-width: 0.5px;
-  --border-radius: 0.25rem;
+  --border-width: 1px;
+  --border-radius: 0.5rem;
   
   /* Transitions */
   --transition-fast: 150ms ease;
@@ -60,18 +68,6 @@
   --z-dropdown: 1000;
   --z-modal: 1050;
   --z-tooltip: 1100;
-}
-
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg-primary: #1A1A1A;
-    --color-bg-secondary: #2A2A2A;
-    --color-text-primary: #FAFAFA;
-    --color-text-secondary: #CCCCCC;
-    --color-text-muted: #999999;
-    --color-border: rgba(255, 255, 255, 0.1);
-  }
 }
 
 /* Reset and Base Styles */
@@ -137,12 +133,14 @@ body {
 .bg-secondary { background-color: var(--color-bg-secondary); }
 
 .backend-accent { color: var(--color-backend); }
-.frontend-accent { color: var(--color-frontend); }
-.android-accent { color: var(--color-android); }
+.genai-accent { color: var(--color-genai); }
+.data-accent { color: var(--color-data); }
+.platform-accent { color: var(--color-platform); }
 
+.genai-bg { background-color: var(--color-genai); }
 .backend-bg { background-color: var(--color-backend); }
-.frontend-bg { background-color: var(--color-frontend); }
-.android-bg { background-color: var(--color-android); }
+.data-bg { background-color: var(--color-data); }
+.platform-bg { background-color: var(--color-platform); }
 
 /* Spacing Utilities */
 .p-1 { padding: var(--space-1); }

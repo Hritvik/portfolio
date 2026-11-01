@@ -14,16 +14,16 @@ const Blog: React.FC = () => {
   return (
     <section className="section">
       <div className="container">
-        <h2 className="section-title">Blog</h2>
+        <div className="section-subtitle">// writing backlog</div>
+        <h2 className="section-title">Notes I Should Write</h2>
+        <p className="section-intro">
+          These are intentionally framed as technical writing candidates for now:
+          each one maps to a real system or design from the project archive.
+        </p>
         
         <div className="blog-list">
           {blogPosts.map((post) => (
-            <a 
-              key={post.id} 
-              href={`/blog/${post.id}`}
-              className="blog-item"
-              onClick={(e) => e.preventDefault()}
-            >
+            <article key={post.id} className="blog-item">
               <div className="blog-content">
                 <div className="blog-meta">
                   {formatDate(post.date)} · {post.category} · {post.readTime} read
@@ -31,8 +31,8 @@ const Blog: React.FC = () => {
                 <h3 className="blog-title">{post.title}</h3>
                 <p className="blog-excerpt">{post.excerpt}</p>
               </div>
-              <div className="blog-arrow">→</div>
-            </a>
+              <span className="blog-status">Coming Soon</span>
+            </article>
           ))}
         </div>
       </div>

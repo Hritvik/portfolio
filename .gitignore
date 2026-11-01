@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Private career source material
+knowledge-bank/
+output/job-application-tracker/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
